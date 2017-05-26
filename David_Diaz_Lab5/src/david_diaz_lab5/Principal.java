@@ -2,7 +2,10 @@ package david_diaz_lab5;
 
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class Principal extends javax.swing.JFrame {
     public Principal() {
@@ -73,6 +76,16 @@ public class Principal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jCB_Modificar_Orden = new javax.swing.JComboBox<>();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jD_Lista_Clientes = new javax.swing.JDialog();
+        jLabel22 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jL_Clientes = new javax.swing.JList<>();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jT_Cliente = new javax.swing.JTree();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -80,6 +93,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Agregar Cliente");
@@ -444,6 +458,59 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(141, Short.MAX_VALUE))
         );
 
+        jMenuItem5.setText("jMenuItem5");
+
+        jLabel22.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel22.setText("Lista de Clientes");
+
+        jScrollPane3.setViewportView(jL_Clientes);
+
+        jButton5.setText("Agregar al Arbol");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
+        jT_Cliente.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane5.setViewportView(jT_Cliente);
+
+        javax.swing.GroupLayout jD_Lista_ClientesLayout = new javax.swing.GroupLayout(jD_Lista_Clientes.getContentPane());
+        jD_Lista_Clientes.getContentPane().setLayout(jD_Lista_ClientesLayout);
+        jD_Lista_ClientesLayout.setHorizontalGroup(
+            jD_Lista_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jD_Lista_ClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jD_Lista_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jD_Lista_ClientesLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jD_Lista_ClientesLayout.setVerticalGroup(
+            jD_Lista_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jD_Lista_ClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addGroup(jD_Lista_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jD_Lista_ClientesLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jD_Lista_ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3)))
+                    .addGroup(jD_Lista_ClientesLayout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButton5)))
+                .addContainerGap(207, Short.MAX_VALUE))
+        );
+
+        jScrollPane4.setViewportView(jTree1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Cliente");
@@ -484,6 +551,9 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
+        jMenuItem6.setText("Lista de Cientes");
+        jMenu2.add(jMenuItem6);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -516,6 +586,7 @@ public class Principal extends javax.swing.JFrame {
             modelo.addElement(c);
             jCB_Cliente_Modificar.setModel(modelo);
             jCB_Cliente_Orden.setModel(modelo);
+            jL_Clientes.setModel(modelo);
             jTF_Nombre_Cliente.setText("");
             jTF_Numero_T_Cliente.setText("");
             jTF_Efectivo_Cliente.setText("");
@@ -565,6 +636,7 @@ public class Principal extends javax.swing.JFrame {
             modelo.addElement(c);
             jCB_Cliente_Modificar.setModel(modelo);
             jCB_Cliente_Orden.setModel(modelo);
+            jL_Clientes.setModel(modelo);
             jTF_Nombre_Modificar.setText("");
             jTF_Numero_T_Modificar.setText("");
             jTF_Efectivo_Modificar.setText("");
@@ -663,6 +735,14 @@ public class Principal extends javax.swing.JFrame {
        jD_Modificar_Orden.setLocationRelativeTo(this);
        jD_Modificar_Orden.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        if (jL_Clientes.getSelectedIndex() >= 0) {
+            DefaultTreeModel modelo = (DefaultTreeModel) jT_Cliente.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
+            DefaultListModel modelo_lista = (DefaultListModel) jL_Clientes.getModel();
+        }
+    }//GEN-LAST:event_jButton5MouseClicked
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -701,6 +781,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jCB_Cliente_Modificar;
     private javax.swing.JComboBox<String> jCB_Cliente_Orden;
     private javax.swing.JComboBox<String> jCB_Modificar_Orden;
@@ -712,8 +793,10 @@ public class Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDC_Fecha_Orden;
     private javax.swing.JDialog jD_Agregar_Cliente;
     private javax.swing.JDialog jD_Agregar_Orden;
+    private javax.swing.JDialog jD_Lista_Clientes;
     private javax.swing.JDialog jD_Modificar_Cliente;
     private javax.swing.JDialog jD_Modificar_Orden;
+    private javax.swing.JList<String> jL_Clientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -728,6 +811,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -742,12 +826,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JSpinner jS_B;
     private javax.swing.JSpinner jS_E;
     private javax.swing.JSpinner jS_O;
     private javax.swing.JSpinner jS_R;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jTA_Direccion_Cliente;
     private javax.swing.JTextArea jTA_Direccion_Modificar;
     private javax.swing.JTextField jTF_Efectivo_Cliente;
@@ -758,6 +847,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTF_Nombre_Modificar;
     private javax.swing.JTextField jTF_Numero_T_Cliente;
     private javax.swing.JTextField jTF_Numero_T_Modificar;
+    private javax.swing.JTree jT_Cliente;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
     private int numero_orden = 0;
 }
