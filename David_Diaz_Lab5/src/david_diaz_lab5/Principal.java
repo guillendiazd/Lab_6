@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -472,7 +473,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Ordenes");
         jT_Cliente.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane5.setViewportView(jT_Cliente);
 
@@ -551,7 +552,12 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        jMenuItem6.setText("Lista de Cientes");
+        jMenuItem6.setText("Lista de Clientes");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
@@ -667,25 +673,28 @@ public class Principal extends javax.swing.JFrame {
             jCB_Modificar_Orden.setModel(modelo);
             ((Cliente) jCB_Cliente_Orden.getSelectedItem()).setOrden(o);
             if (jCHB_B.isSelected()) {
-                for (int i = 0; i <= (Integer)jS_B.getValue(); i++) {
+                for (int i = 0; i < (Integer)jS_B.getValue(); i++) {
                     ((Cliente)jCB_Cliente_Orden.getSelectedItem()).getBaleadas().add(new Baleada_Binaria());
                 }
             }
             if (jCHB_E.isSelected()) {
-                for (int i = 0; i <= (Integer)jS_E.getValue(); i++) {
+                for (int i = 0; i < (Integer)jS_E.getValue(); i++) {
                     ((Cliente)jCB_Cliente_Orden.getSelectedItem()).getBaleadas().add(new Baleada_Especial());
                 }
             }
             if (jCHB_R.isSelected()) {
-                for (int i = 0; i <= (Integer)jS_R.getValue(); i++) {
+                for (int i = 0; i < (Integer)jS_R.getValue(); i++) {
                     ((Cliente)jCB_Cliente_Orden.getSelectedItem()).getBaleadas().add(new Baleada_Reloaded());
                 }
             }
             if (jCHB_O.isSelected()) {
-                for (int i = 0; i <= (Integer)jS_O.getValue(); i++) {
+                for (int i = 0; i < (Integer)jS_O.getValue(); i++) {
                     ((Cliente)jCB_Cliente_Orden.getSelectedItem()).getBaleadas().add(new Baleada_OutofBounds());
                 }
             }
+            DefaultComboBoxModel modelo_r = (DefaultComboBoxModel) jCB_Cliente_Orden.getModel();
+            modelo_r.removeElementAt(jCB_Cliente_Orden.getSelectedIndex());
+            jCB_Cliente_Orden.setModel(modelo_r);
             JOptionPane.showMessageDialog(jD_Agregar_Orden, "Orden Creada");
             jDC_Fecha_Orden.setDate(new Date());
             jTF_Hora.setText("");
@@ -737,12 +746,50 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        
         if (jL_Clientes.getSelectedIndex() >= 0) {
             DefaultTreeModel modelo = (DefaultTreeModel) jT_Cliente.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
-            DefaultListModel modelo_lista = (DefaultListModel) jL_Clientes.getModel();
+            String nombre, direccion;
+            int numero_t;
+            double efectivo;
+            ListModel modelo_lista = jL_Clientes.getModel();
+            nombre = jL_Clientes.getSelectedValue().getNombre();
+            numero_t = jL_Clientes.getSelectedValue().getNumero_telefono();
+            efectivo = jL_Clientes.getSelectedValue().getEfectivo();
+            direccion = jL_Clientes.getSelectedValue().getDireccion();
+            DefaultMutableTreeNode n = new DefaultMutableTreeNode(nombre);
+            DefaultMutableTreeNode n_t = new DefaultMutableTreeNode("Numero Telefo: " + numero_t);
+            DefaultMutableTreeNode e = new DefaultMutableTreeNode("Efectivo: " + efectivo);
+            DefaultMutableTreeNode d = new DefaultMutableTreeNode("Dirección:" + direccion);
+            DefaultMutableTreeNode o = new DefaultMutableTreeNode(jL_Clientes.getSelectedValue().getOrden());
+            DefaultMutableTreeNode b = new DefaultMutableTreeNode("Baleadas");
+            DefaultMutableTreeNode b_b = new DefaultMutableTreeNode();
+            DefaultMutableTreeNode in = new DefaultMutableTreeNode();
+            for (int i = 0; i < jL_Clientes.getSelectedValue().getBaleadas().size(); i++) {
+                b_b = new DefaultMutableTreeNode(jL_Clientes.getSelectedValue().getBaleadas().get(i));
+                for (int j = 0; j < ((Baleada)jL_Clientes.getSelectedValue().getBaleadas().get(i)).getIngredientes().size(); j++) {
+                    in = new DefaultMutableTreeNode(((Baleada)jL_Clientes.getSelectedValue().getBaleadas().get(i)).getIngredientes().get(j));
+                    b_b.add(in);
+                }
+                b.add(b_b);
+            }
+            o.add(n);
+            n.add(n_t);
+            n.add(e);
+            n.add(d);
+            n.add(b);
+            raiz.add(o);
+            modelo.reload();
         }
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+       jD_Lista_Clientes.setModal(true);
+       jD_Lista_Clientes.pack();
+       jD_Lista_Clientes.setLocationRelativeTo(this);
+       jD_Lista_Clientes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -796,7 +843,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jD_Lista_Clientes;
     private javax.swing.JDialog jD_Modificar_Cliente;
     private javax.swing.JDialog jD_Modificar_Orden;
-    private javax.swing.JList<String> jL_Clientes;
+    private javax.swing.JList<Cliente> jL_Clientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

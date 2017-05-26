@@ -12,6 +12,6 @@ public class Baleada_Reloaded extends Baleada{
     
     @Override
     public String toString() {
-        return "Baleada Reloaded" + "Precio: " + super.getPrecio();
+        return "Baleada Reloaded";
     }
 }

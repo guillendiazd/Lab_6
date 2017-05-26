@@ -11,7 +11,7 @@ public class Baleada_Especial extends Baleada{
 
     @Override
     public String toString() {
-        return "Baleada Especial" + "Precio: " + super.getPrecio();
+        return "Baleada Especial";
     }
     
 }

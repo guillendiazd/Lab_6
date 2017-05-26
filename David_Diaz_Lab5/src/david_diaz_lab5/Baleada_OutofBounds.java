@@ -13,6 +13,6 @@ public class Baleada_OutofBounds extends Baleada{
     
     @Override
     public String toString() {
-        return "Baleada OutofBounds" + "Precio: " + super.getPrecio();
+        return "Baleada OutofBounds";
     }
 }

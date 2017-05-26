@@ -9,7 +9,7 @@ public class Baleada_Binaria extends Baleada{
 
     @Override
     public String toString() {
-        return "Baleada Binaria" + "Precio: " + super.getPrecio();
+        return "Baleada Binaria";
     }
     
 }
